@@ -35,22 +35,22 @@ const pillars = [
 
 export default function Pillars() {
   return (
-    <div className="max-w-3xl mx-auto px-8 py-20">
+    <div className="max-w-3xl mx-auto px-6 sm:px-8 py-12 sm:py-20">
       <p className="text-xs font-bold tracking-widest uppercase text-white/40 mb-4">Linea Ventures</p>
-      <h1 className="text-5xl font-extrabold tracking-tight text-white mb-4" style={{ letterSpacing: '-0.02em' }}>
+      <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-white mb-4" style={{ letterSpacing: '-0.02em' }}>
         Our Principles
       </h1>
-      <p className="text-xl italic text-white/50 mb-16">How we operate. How we win. How we serve founders.</p>
+      <p className="text-lg sm:text-xl italic text-white/50 mb-12 sm:mb-16">How we operate. How we win. How we serve founders.</p>
 
       <div className="divide-y divide-white/10">
         {pillars.map(({ letter, name, points }) => (
-          <div key={letter} className="grid gap-12 py-12" style={{ gridTemplateColumns: '220px 1fr' }}>
+          <div key={letter} className="flex flex-col sm:grid gap-6 sm:gap-12 py-10 sm:py-12" style={{ gridTemplateColumns: '220px 1fr' }}>
             <div>
               <div className="text-3xl font-extrabold text-white/40 mb-2">{letter}</div>
-              <div className="text-xl font-bold text-white mb-4">{name}</div>
-              <div className="text-2xl text-white/30">→</div>
+              <div className="text-xl font-bold text-white mb-2 sm:mb-4">{name}</div>
+              <div className="hidden sm:block text-2xl text-white/30">→</div>
             </div>
-            <ul className="space-y-3 mt-1">
+            <ul className="space-y-3">
               {points.map((p, i) => (
                 <li key={i} className="text-white/70 text-base leading-relaxed pl-4 border-l border-white/20">
                   {p}

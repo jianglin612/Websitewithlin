@@ -32,30 +32,33 @@ function Home() {
       className="relative overflow-hidden flex flex-col"
       style={{ backgroundColor: '#0a2828', minHeight: '100vh' }}
     >
-      {/* Arrow circle — decorative, right side, fully visible */}
-      <div className="absolute right-16 top-1/2 -translate-y-1/2">
+      {/* Arrow circle — hidden on mobile, decorative on desktop */}
+      <div className="hidden md:block absolute right-16 top-1/2 -translate-y-1/2">
         <ArrowCircle size={540} />
       </div>
 
       {/* Brand */}
-      <header className="px-16 pt-12">
+      <header className="px-8 md:px-16 pt-10 md:pt-12">
         <span className="text-xs font-bold tracking-widest uppercase text-white/50">
           Linea Ventures
         </span>
       </header>
 
       {/* Main content — vertically centered in remaining space */}
-      <div className="flex-1 flex flex-col justify-center px-16 pb-16">
+      <div className="flex-1 flex flex-col justify-center px-8 md:px-16 pb-12 md:pb-16">
 
-        {/* LINEA animated text */}
-        <div className="overflow-hidden mb-10" style={{ width: '560px', height: '160px' }}>
+        {/* LINEA animated text — scales with viewport width on mobile */}
+        <div
+          className="overflow-hidden mb-8 md:mb-10 w-full md:w-auto"
+          style={{ height: 'clamp(70px, 20vw, 160px)', maxWidth: '560px' }}
+        >
           <div
             className="relative w-full h-full"
             style={{
               WebkitMaskImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 160"><text x="0" y="130" text-anchor="start" font-size="140" font-weight="400" letter-spacing="8" font-family="Montserrat, sans-serif" fill="white">LINEA</text></svg>')`,
               maskImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 160"><text x="0" y="130" text-anchor="start" font-size="140" font-weight="400" letter-spacing="8" font-family="Montserrat, sans-serif" fill="white">LINEA</text></svg>')`,
-              WebkitMaskSize: '560px 160px',
-              maskSize: '560px 160px',
+              WebkitMaskSize: '100% 100%',
+              maskSize: '100% 100%',
               WebkitMaskPosition: '0 0',
               maskPosition: '0 0',
               WebkitMaskRepeat: 'no-repeat',
@@ -86,9 +89,9 @@ function Home() {
         </div>
 
         {/* Divider */}
-        <div className="h-px bg-white/15 mb-8" style={{ width: '560px' }} />
+        <div className="h-px bg-white/15 mb-8 w-full" style={{ maxWidth: '560px' }} />
 
-        {/* Nav links — left-aligned, matching LINEA width */}
+        {/* Nav links */}
         <nav className="flex flex-col gap-4">
           {navItems.map(({ to, label }, i) => (
             <Link

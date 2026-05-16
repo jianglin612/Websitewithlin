@@ -1,6 +1,6 @@
 function H2({ children }: { children: React.ReactNode }) {
   return (
-    <h2 className="text-2xl font-bold text-white/80 mt-14 mb-4" style={{ letterSpacing: '-0.01em' }}>
+    <h2 className="text-xl sm:text-2xl font-bold text-white/80 mt-10 sm:mt-14 mb-4" style={{ letterSpacing: '-0.01em' }}>
       {children}
     </h2>
   );
@@ -20,12 +20,12 @@ function Li({ children }: { children: React.ReactNode }) {
 
 export default function WhatWeLookFor() {
   return (
-    <div className="max-w-3xl mx-auto px-8 py-20">
+    <div className="max-w-3xl mx-auto px-6 sm:px-8 py-12 sm:py-20">
       <p className="text-xs font-bold tracking-widest uppercase text-white/40 mb-4">Linea Ventures · How We Invest</p>
-      <h1 className="text-5xl font-extrabold tracking-tight text-white mb-4" style={{ letterSpacing: '-0.02em' }}>
+      <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-white mb-4" style={{ letterSpacing: '-0.02em' }}>
         What We Look For
       </h1>
-      <p className="text-xl italic text-white/50 mb-12">
+      <p className="text-lg sm:text-xl italic text-white/50 mb-10 sm:mb-12">
         Three things have to be true before we write a check. We try to be honest about the rest.
       </p>
 

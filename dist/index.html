@@ -27,6 +27,14 @@
 
     <body>
       <div id="root"></div>
+      <script>
+        // Restore path saved by 404.html for client-side routing on GitHub Pages
+        var redirect = sessionStorage.redirect;
+        if (redirect && redirect !== '/') {
+          sessionStorage.removeItem('redirect');
+          history.replaceState(null, '', redirect);
+        }
+      </script>
     </body>
   </html>
   

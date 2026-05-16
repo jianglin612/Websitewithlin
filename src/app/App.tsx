@@ -111,7 +111,7 @@ function Home() {
 
 export default function App() {
   return (
-    <BrowserRouter basename="/Websitewithlin">
+    <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route element={<Layout />}>

@@ -1,110 +1,126 @@
-import { motion } from 'motion/react';
+import { BrowserRouter, Routes, Route, Navigate, Link } from 'react-router-dom';
 import { useEffect } from 'react';
+import { motion } from 'motion/react';
+import ArrowCircle from './components/ArrowCircle';
+import Layout from './components/Layout';
+import Pillars from './pages/Pillars';
+import Thesis from './pages/Thesis';
+import WhatWeLookFor from './pages/WhatWeLookFor';
 
 const forestImages = [
-  'https://images.unsplash.com/photo-1765974082420-f67520211419?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxncmVlbiUyMGZvcmVzdCUyMGluc3BpcmluZyUyMHBhbm9yYW1pY3xlbnwxfHx8fDE3NzA0MDMwNDV8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-  'https://images.unsplash.com/photo-1667216324249-c04ad5284ff2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxvcmFuZ2UlMjBzdW5zZXQlMjBsYW5kc2NhcGUlMjBpbnNwaXJpbmd8ZW58MXx8fHwxNzcwNDAzMDQ2fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-  'https://images.unsplash.com/photo-1718433930602-ec186e9210d7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXNoJTIwZ3JlZW4lMjBuYXR1cmUlMjBwYW5vcmFtYXxlbnwxfHx8fDE3NzA0MDMwNDd8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-  'https://images.unsplash.com/photo-1729952551557-a403bc9277bd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxvcmFuZ2UlMjBhdXR1bW4lMjBmb3Jlc3QlMjBzY2VuaWN8ZW58MXx8fHwxNzcwNDAzMDQ3fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral'
+  'https://images.unsplash.com/photo-1502058665739-cc9a8769fb1e?fit=crop&w=1080&q=80',
+  'https://images.unsplash.com/photo-1486707471592-8e7eb7e36f78?fit=crop&w=1080&q=80',
+  'https://images.unsplash.com/photo-1490100667990-4fced8021649?fit=crop&w=1080&q=80',
+  'https://images.unsplash.com/photo-1465326117523-6450112b60b2?fit=crop&w=1080&q=80',
+  'https://images.unsplash.com/photo-1496156298940-6902fc34e55d?fit=crop&w=1080&q=80',
+  'https://images.unsplash.com/photo-1631257114315-24a694751517?fit=crop&w=1080&q=80',
 ];
 
-export default function App() {
+const navItems = [
+  { to: '/pillars', label: 'Our Principles' },
+  { to: '/thesis', label: 'Vertical AGI Thesis' },
+  { to: '/what-we-look-for', label: 'What We Look For' },
+];
+
+function Home() {
   useEffect(() => {
-    document.title = 'Lin Capital';
-    
-    // Update favicon to just "L"
-    const faviconSvg = `data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="%2318181b"/><text x="50" y="70" text-anchor="middle" font-size="70" font-weight="400" font-family="Montserrat, sans-serif" fill="white">L</text></svg>`;
-    const link = document.querySelector("link[rel~='icon']") as HTMLLinkElement || document.createElement('link');
-    link.type = 'image/svg+xml';
-    link.rel = 'icon';
-    link.href = faviconSvg;
-    if (!document.querySelector("link[rel~='icon']")) {
-      document.head.appendChild(link);
-    }
-    
-    // Update meta tags
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 'Lin Capital');
-    } else {
-      const meta = document.createElement('meta');
-      meta.name = 'description';
-      meta.content = 'Lin Capital';
-      document.head.appendChild(meta);
-    }
-    
-    const metaOgTitle = document.querySelector('meta[property="og:title"]');
-    if (metaOgTitle) {
-      metaOgTitle.setAttribute('content', 'Lin Capital');
-    } else {
-      const meta = document.createElement('meta');
-      meta.setAttribute('property', 'og:title');
-      meta.content = 'Lin Capital';
-      document.head.appendChild(meta);
-    }
-    
-    const metaOgDescription = document.querySelector('meta[property="og:description"]');
-    if (metaOgDescription) {
-      metaOgDescription.setAttribute('content', 'Lin Capital');
-    } else {
-      const meta = document.createElement('meta');
-      meta.setAttribute('property', 'og:description');
-      meta.content = 'Lin Capital';
-      document.head.appendChild(meta);
-    }
+    document.title = 'Linea Ventures';
   }, []);
-  
+
   return (
-    <div className="size-full relative overflow-hidden bg-gray-50 flex items-center justify-center">
-      {/* Animated forest background that moves inside the text */}
-      <div className="absolute inset-0 flex items-center justify-center md:items-end md:justify-start overflow-hidden md:p-4">
-        <div 
-          className="relative"
-          style={{
-            WebkitMaskImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 400"><text x="50%" y="55%" text-anchor="middle" dominant-baseline="middle" font-size="280" font-weight="400" letter-spacing="12" font-family="Montserrat, sans-serif" fill="white">LIN</text></svg>')`,
-            maskImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 400"><text x="50%" y="55%" text-anchor="middle" dominant-baseline="middle" font-size="280" font-weight="400" letter-spacing="12" font-family="Montserrat, sans-serif" fill="white">LIN</text></svg>')`,
-            WebkitMaskSize: '400px 160px',
-            maskSize: '400px 160px',
-            WebkitMaskPosition: 'center',
-            maskPosition: 'center',
-            WebkitMaskRepeat: 'no-repeat',
-            maskRepeat: 'no-repeat',
-            width: '400px',
-            height: '160px'
-          }}
-        >
-          <motion.div
-            className="absolute flex h-full"
-            animate={{
-              x: ['0px', '-2400px']
-            }}
-            transition={{
-              duration: 180,
-              repeat: Infinity,
-              ease: "linear"
-            }}
+    <div
+      className="relative overflow-hidden flex flex-col"
+      style={{ backgroundColor: '#0a2828', minHeight: '100vh' }}
+    >
+      {/* Arrow circle — decorative, right side, fully visible */}
+      <div className="absolute right-16 top-1/2 -translate-y-1/2">
+        <ArrowCircle size={540} />
+      </div>
+
+      {/* Brand */}
+      <header className="px-16 pt-12">
+        <span className="text-xs font-bold tracking-widest uppercase text-white/50">
+          Linea Ventures
+        </span>
+      </header>
+
+      {/* Main content — vertically centered in remaining space */}
+      <div className="flex-1 flex flex-col justify-center px-16 pb-16">
+
+        {/* LINEA animated text */}
+        <div className="overflow-hidden mb-10" style={{ width: '560px', height: '160px' }}>
+          <div
+            className="relative w-full h-full"
             style={{
-              width: '4800px',
-              top: 0,
-              left: 0
+              WebkitMaskImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 160"><text x="0" y="130" text-anchor="start" font-size="140" font-weight="400" letter-spacing="8" font-family="Montserrat, sans-serif" fill="white">LINEA</text></svg>')`,
+              maskImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 160"><text x="0" y="130" text-anchor="start" font-size="140" font-weight="400" letter-spacing="8" font-family="Montserrat, sans-serif" fill="white">LINEA</text></svg>')`,
+              WebkitMaskSize: '560px 160px',
+              maskSize: '560px 160px',
+              WebkitMaskPosition: '0 0',
+              maskPosition: '0 0',
+              WebkitMaskRepeat: 'no-repeat',
+              maskRepeat: 'no-repeat',
             }}
           >
-            {[...forestImages, ...forestImages].map((img, index) => (
-              <div
-                key={index}
-                className="h-full"
-                style={{
-                  width: '600px',
-                  backgroundImage: `url(${img})`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                  flexShrink: 0
-                }}
-              />
-            ))}
-          </motion.div>
+            <motion.div
+              className="absolute flex h-full"
+              animate={{ x: ['0px', '-2400px'] }}
+              transition={{ duration: 180, repeat: Infinity, ease: 'linear' }}
+              style={{ width: '4800px', top: 0, left: 0 }}
+            >
+              {[...forestImages, ...forestImages].map((img, index) => (
+                <div
+                  key={index}
+                  className="h-full"
+                  style={{
+                    width: '600px',
+                    backgroundImage: `url(${img})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    flexShrink: 0,
+                  }}
+                />
+              ))}
+            </motion.div>
+          </div>
         </div>
+
+        {/* Divider */}
+        <div className="h-px bg-white/15 mb-8" style={{ width: '560px' }} />
+
+        {/* Nav links — left-aligned, matching LINEA width */}
+        <nav className="flex flex-col gap-4">
+          {navItems.map(({ to, label }, i) => (
+            <Link
+              key={to}
+              to={to}
+              className="flex items-center gap-4 group w-fit"
+            >
+              <span className="text-white/30 text-xs font-mono tabular-nums">0{i + 1}</span>
+              <span className="text-white/60 group-hover:text-white transition-colors duration-200 text-sm font-medium tracking-wide">
+                {label}
+              </span>
+              <span className="w-0 group-hover:w-5 h-px bg-white/50 transition-all duration-300 ease-out" />
+            </Link>
+          ))}
+        </nav>
       </div>
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route element={<Layout />}>
+          <Route path="/pillars" element={<Pillars />} />
+          <Route path="/thesis" element={<Thesis />} />
+          <Route path="/what-we-look-for" element={<WhatWeLookFor />} />
+        </Route>
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </BrowserRouter>
   );
 }

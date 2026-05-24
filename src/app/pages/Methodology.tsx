@@ -39,7 +39,7 @@ export default function Methodology() {
                 Addressable market size, growth trajectory, and competitive intensity. Vertical AGI plays typically have large TAMs ($1B+) but well-defined niches.
               </p>
               <ul className="text-white/50 text-sm space-y-1">
-                <li><strong>5:</strong> Massive TAM ($5B+), clear vertical, high growth (>20% YoY), defensible position</li>
+                <li><strong>5:</strong> Massive TAM ($5B+), clear vertical, high growth (&gt;20% YoY), defensible position</li>
                 <li><strong>4:</strong> Large TAM ($1–5B), growing vertical, good differentiation</li>
                 <li><strong>3:</strong> Moderate TAM ($500M–1B), emerging or niche, some competition</li>
                 <li><strong>2:</strong> Small TAM ($100–500M), mature or saturated, tough competition</li>
@@ -81,8 +81,8 @@ export default function Methodology() {
                 Sales motion, channel strategy, customer acquisition efficiency, and ability to scale. Usage-based pricing models are preferred over seat-based.
               </p>
               <ul className="text-white/50 text-sm space-y-1">
-                <li><strong>5:</strong> Efficient CAC (CAC payback &lt;12 months), viral or PLG, usage-based pricing, strong retention</li>
-                <li><strong>4:</strong> Efficient direct sales, good channel fit, scalable model, &lt;20% churn</li>
+                <li><strong>5:</strong> Efficient CAC (CAC payback &lt; 12 months), viral or PLG, usage-based pricing, strong retention</li>
+                <li><strong>4:</strong> Efficient direct sales, good channel fit, scalable model, &lt; 20% churn</li>
                 <li><strong>3:</strong> Reasonable CAC, multiple channels, moderate unit economics</li>
                 <li><strong>2:</strong> Expensive CAC, limited channels, challenged unit economics</li>
                 <li><strong>1:</strong> Broken CAC, no clear go-to-market, high churn, unsustainable growth</li>

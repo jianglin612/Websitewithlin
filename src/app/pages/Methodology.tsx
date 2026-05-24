@@ -32,36 +32,75 @@ export default function Methodology() {
           <p className="text-white/70 mb-6">
             For thesis-aligned companies at Seed/Series A, we score across five dimensions (1–5 scale):
           </p>
-          <div className="space-y-4">
-            <div className="border border-white/10 rounded-lg p-4 bg-white/5">
-              <h3 className="font-bold text-white mb-2">Market</h3>
-              <p className="text-white/60 text-sm">
+          <div className="space-y-6">
+            <div className="border border-white/10 rounded-lg p-5 bg-white/5">
+              <h3 className="font-bold text-white mb-3 text-lg">Market (1–5)</h3>
+              <p className="text-white/60 text-sm mb-3">
                 Addressable market size, growth trajectory, and competitive intensity. Vertical AGI plays typically have large TAMs ($1B+) but well-defined niches.
               </p>
+              <ul className="text-white/50 text-sm space-y-1">
+                <li><strong>5:</strong> Massive TAM ($5B+), clear vertical, high growth (>20% YoY), defensible position</li>
+                <li><strong>4:</strong> Large TAM ($1–5B), growing vertical, good differentiation</li>
+                <li><strong>3:</strong> Moderate TAM ($500M–1B), emerging or niche, some competition</li>
+                <li><strong>2:</strong> Small TAM ($100–500M), mature or saturated, tough competition</li>
+                <li><strong>1:</strong> Tiny TAM, commodity market, commoditized</li>
+              </ul>
             </div>
-            <div className="border border-white/10 rounded-lg p-4 bg-white/5">
-              <h3 className="font-bold text-white mb-2">Team</h3>
-              <p className="text-white/60 text-sm">
-                Founder experience, domain expertise, and execution track record. Deep domain knowledge critical for vertical AI.
+
+            <div className="border border-white/10 rounded-lg p-5 bg-white/5">
+              <h3 className="font-bold text-white mb-3 text-lg">Team (1–5)</h3>
+              <p className="text-white/60 text-sm mb-3">
+                Founder experience, domain expertise, execution track record, and ability to attract talent. Deep domain knowledge is critical for vertical AI.
               </p>
+              <ul className="text-white/50 text-sm space-y-1">
+                <li><strong>5:</strong> Founded or led similar companies; domain expert with 10+ years; strong execution history</li>
+                <li><strong>4:</strong> Worked in the space, understands pain points, credible track record</li>
+                <li><strong>3:</strong> Some relevant experience, learns quickly, reasonable pedigree</li>
+                <li><strong>2:</strong> Limited domain experience, unproven execution, questionable fit</li>
+                <li><strong>1:</strong> No relevant background, execution concerns, turnover issues</li>
+              </ul>
             </div>
-            <div className="border border-white/10 rounded-lg p-4 bg-white/5">
-              <h3 className="font-bold text-white mb-2">Product</h3>
-              <p className="text-white/60 text-sm">
-                Technical sophistication, differentiation, and product-market fit evidence. AI-native solutions should show strong moats.
+
+            <div className="border border-white/10 rounded-lg p-5 bg-white/5">
+              <h3 className="font-bold text-white mb-3 text-lg">Product (1–5)</h3>
+              <p className="text-white/60 text-sm mb-3">
+                Technical sophistication, differentiation, moat strength, and evidence of product-market fit. AI-native solutions should show clear competitive advantages.
               </p>
+              <ul className="text-white/50 text-sm space-y-1">
+                <li><strong>5:</strong> Proprietary AI/algorithms, strong moat, clear PMF, customers willing to pay premium</li>
+                <li><strong>4:</strong> Differentiated tech, defensible position, strong usage metrics</li>
+                <li><strong>3:</strong> Solid product, some differentiation, moderate traction</li>
+                <li><strong>2:</strong> Me-too product, weak moat, unclear differentiation</li>
+                <li><strong>1:</strong> Commodity product, no moat, poor UX, feature parity with incumbents</li>
+              </ul>
             </div>
-            <div className="border border-white/10 rounded-lg p-4 bg-white/5">
-              <h3 className="font-bold text-white mb-2">GTM (Go-To-Market)</h3>
-              <p className="text-white/60 text-sm">
-                Sales motion, channel strategy, and ability to reach customers at scale. Usage-based pricing models are preferred.
+
+            <div className="border border-white/10 rounded-lg p-5 bg-white/5">
+              <h3 className="font-bold text-white mb-3 text-lg">GTM (Go-To-Market) (1–5)</h3>
+              <p className="text-white/60 text-sm mb-3">
+                Sales motion, channel strategy, customer acquisition efficiency, and ability to scale. Usage-based pricing models are preferred over seat-based.
               </p>
+              <ul className="text-white/50 text-sm space-y-1">
+                <li><strong>5:</strong> Efficient CAC (CAC payback &lt;12 months), viral or PLG, usage-based pricing, strong retention</li>
+                <li><strong>4:</strong> Efficient direct sales, good channel fit, scalable model, &lt;20% churn</li>
+                <li><strong>3:</strong> Reasonable CAC, multiple channels, moderate unit economics</li>
+                <li><strong>2:</strong> Expensive CAC, limited channels, challenged unit economics</li>
+                <li><strong>1:</strong> Broken CAC, no clear go-to-market, high churn, unsustainable growth</li>
+              </ul>
             </div>
-            <div className="border border-white/10 rounded-lg p-4 bg-white/5">
-              <h3 className="font-bold text-white mb-2">AI-Native</h3>
-              <p className="text-white/60 text-sm">
-                How core is AI to the product? True agentic behavior and decision-making, not just ML features bolted on.
+
+            <div className="border border-white/10 rounded-lg p-5 bg-white/5">
+              <h3 className="font-bold text-white mb-3 text-lg">AI-Native (1–5)</h3>
+              <p className="text-white/60 text-sm mb-3">
+                How core is AI to the product's value prop? True agentic behavior and autonomous decision-making, not just ML features bolted on top.
               </p>
+              <ul className="text-white/50 text-sm space-y-1">
+                <li><strong>5:</strong> AI/agents are the core product; replaces human work entirely; autonomous decision-making</li>
+                <li><strong>4:</strong> AI is primary value; significant automation; user oversight needed</li>
+                <li><strong>3:</strong> AI is meaningful but not core; enhances human workflow; ML-assisted decision support</li>
+                <li><strong>2:</strong> AI is secondary; mainly optimization or data processing; traditional software with ML</li>
+                <li><strong>1:</strong> Minimal AI; could work without it; feature, not differentiator</li>
+              </ul>
             </div>
           </div>
         </section>

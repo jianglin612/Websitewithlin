@@ -1231,9 +1231,9 @@ export default function PortfolioCompanies() {
 
       <Link
         to="/methodology"
-        className="inline-flex items-center gap-2 text-sm text-white/50 hover:text-white border border-white/15 hover:border-white/30 rounded-lg px-4 py-2 mb-10 sm:mb-12 transition-colors"
+        className="inline-flex items-center gap-1 text-xs text-white/40 hover:text-white/60 transition-colors"
       >
-        How we scored these companies →
+        Scoring methodology →
       </Link>
 
       {/* Filter bar */}

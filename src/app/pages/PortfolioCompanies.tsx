@@ -1180,6 +1180,7 @@ export default function PortfolioCompanies() {
   const location = useLocation();
   const [filter, setFilter] = useState<'all' | 'fit' | 'late'>('all');
   const [sourceFilter, setSourceFilter] = useState('All');
+  const [stageFilter, setStageFilter] = useState('All');
 
   // Pre-filter by ?source= query param (set when navigating from Network page)
   useEffect(() => {
@@ -1190,10 +1191,14 @@ export default function PortfolioCompanies() {
     }
   }, [location.search]);
 
+  // Get all unique stages from companies
+  const allStages = Array.from(new Set(companies.map(c => c.stage).filter(Boolean))).sort();
+
   const visible = companies.filter((c) => {
     if (filter === 'fit' && !c.lineaFit) return false;
     if (filter === 'late' && !c.tooLate) return false;
     if (sourceFilter !== 'All' && c.source !== sourceFilter) return false;
+    if (stageFilter !== 'All' && c.stage !== stageFilter) return false;
     return true;
   });
 
@@ -1211,8 +1216,8 @@ export default function PortfolioCompanies() {
       </p>
 
       {/* Filter bar */}
-      <div className="flex flex-wrap gap-3 mb-10">
-        <div className="flex gap-2">
+      <div className="flex flex-col gap-3 mb-10">
+        <div className="flex flex-wrap gap-2">
           <button
             onClick={() => setFilter('all')}
             className={`text-xs font-medium px-3 py-1.5 rounded border transition-colors ${
@@ -1245,7 +1250,45 @@ export default function PortfolioCompanies() {
           </button>
         </div>
 
-        <div className="flex flex-wrap gap-1.5 border-l border-white/10 pl-3">
+        <div className="flex flex-wrap gap-1.5 border-t border-white/10 pt-3">
+          <span className="text-xs text-white/40 font-medium self-center">Stage:</span>
+          <button
+            onClick={() => setStageFilter('All')}
+            className={`text-xs px-2.5 py-1 rounded border transition-colors ${
+              stageFilter === 'All'
+                ? 'bg-white/15 border-white/30 text-white'
+                : 'bg-transparent border-white/10 text-white/30 hover:text-white/60'
+            }`}
+          >
+            All
+          </button>
+          {allStages.map((stage) => (
+            <button
+              key={stage}
+              onClick={() => setStageFilter(stage)}
+              className={`text-xs px-2.5 py-1 rounded border transition-colors ${
+                stageFilter === stage
+                  ? 'bg-white/15 border-white/30 text-white'
+                  : 'bg-transparent border-white/10 text-white/30 hover:text-white/60'
+              }`}
+            >
+              {stage}
+            </button>
+          ))}
+        </div>
+
+        <div className="flex flex-wrap gap-1.5 border-t border-white/10 pt-3">
+          <span className="text-xs text-white/40 font-medium self-center">VC Firm:</span>
+          <button
+            onClick={() => setSourceFilter('All')}
+            className={`text-xs px-2.5 py-1 rounded border transition-colors ${
+              sourceFilter === 'All'
+                ? 'bg-white/15 border-white/30 text-white'
+                : 'bg-transparent border-white/10 text-white/30 hover:text-white/60'
+            }`}
+          >
+            All
+          </button>
           {ALL_SOURCES.map((src) => (
             <button
               key={src}

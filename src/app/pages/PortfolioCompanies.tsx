@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -1228,6 +1228,13 @@ export default function PortfolioCompanies() {
       <p className="text-lg sm:text-xl italic text-white/50 mb-10 sm:mb-12">
         Companies backed by our network partners — scored and filtered for Linea fit.
       </p>
+
+      <Link
+        to="/methodology"
+        className="inline-flex items-center gap-2 text-sm text-white/50 hover:text-white border border-white/15 hover:border-white/30 rounded-lg px-4 py-2 mb-10 sm:mb-12 transition-colors"
+      >
+        How we scored these companies →
+      </Link>
 
       {/* Filter bar */}
       <div className="flex flex-col gap-3 mb-10">

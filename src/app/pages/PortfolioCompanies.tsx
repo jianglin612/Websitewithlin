@@ -1225,16 +1225,17 @@ export default function PortfolioCompanies() {
       <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-white mb-4" style={{ letterSpacing: '-0.02em' }}>
         Portfolio Companies
       </h1>
-      <p className="text-lg sm:text-xl italic text-white/50 mb-10 sm:mb-12">
-        Companies backed by our network partners — scored and filtered for Linea fit.
-      </p>
-
-      <Link
-        to="/methodology"
-        className="inline-flex items-center gap-1 text-xs text-white/40 hover:text-white/60 transition-colors"
-      >
-        Scoring methodology →
-      </Link>
+      <div className="flex items-start justify-between gap-4 mb-10 sm:mb-12">
+        <p className="text-lg sm:text-xl italic text-white/50">
+          Companies backed by our network partners — scored and filtered for Linea fit.
+        </p>
+        <Link
+          to="/methodology"
+          className="inline-flex items-center gap-1 text-xs text-white/40 hover:text-white/60 transition-colors whitespace-nowrap flex-shrink-0 mt-1"
+        >
+          Scoring methodology →
+        </Link>
+      </div>
 
       {/* Filter bar */}
       <div className="flex flex-col gap-3 mb-10">

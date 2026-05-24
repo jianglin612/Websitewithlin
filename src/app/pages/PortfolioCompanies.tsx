@@ -1191,14 +1191,28 @@ export default function PortfolioCompanies() {
     }
   }, [location.search]);
 
-  // Get all unique stages from companies
-  const allStages = Array.from(new Set(companies.map(c => c.stage).filter(Boolean))).sort();
+  // Normalize stages: Seed/Series Seed → Seed, Public/Late Stage → Public
+  const normalizeStage = (stage: string): string => {
+    if (!stage) return '';
+    const lower = stage.toLowerCase();
+    if (lower === 'seed' || lower === 'series seed' || lower === 'pre-seed') return 'Seed';
+    if (lower === 'public' || lower === 'late stage') return 'Public';
+    return stage;
+  };
+
+  // Get all unique normalized stages from companies
+  const allStages = Array.from(
+    new Set(companies.map(c => normalizeStage(c.stage)).filter(Boolean))
+  ).sort((a, b) => {
+    const order = ['Seed', 'Series A', 'Series B', 'Series C', 'Series D', 'Series E', 'Series F', 'Growth Stage', 'Public', 'VC Firm', 'Post-Seed'];
+    return order.indexOf(a) - order.indexOf(b);
+  });
 
   const visible = companies.filter((c) => {
     if (filter === 'fit' && !c.lineaFit) return false;
     if (filter === 'late' && !c.tooLate) return false;
     if (sourceFilter !== 'All' && c.source !== sourceFilter) return false;
-    if (stageFilter !== 'All' && c.stage !== stageFilter) return false;
+    if (stageFilter !== 'All' && normalizeStage(c.stage) !== stageFilter) return false;
     return true;
   });
 
@@ -1250,31 +1264,23 @@ export default function PortfolioCompanies() {
           </button>
         </div>
 
-        <div className="flex flex-wrap gap-1.5 border-t border-white/10 pt-3">
-          <span className="text-xs text-white/40 font-medium self-center">Stage:</span>
-          <button
-            onClick={() => setStageFilter('All')}
-            className={`text-xs px-2.5 py-1 rounded border transition-colors ${
-              stageFilter === 'All'
-                ? 'bg-white/15 border-white/30 text-white'
-                : 'bg-transparent border-white/10 text-white/30 hover:text-white/60'
-            }`}
+        <div className="flex items-center gap-2 border-t border-white/10 pt-3">
+          <label htmlFor="stage-select" className="text-xs text-white/40 font-medium">
+            Stage:
+          </label>
+          <select
+            id="stage-select"
+            value={stageFilter}
+            onChange={(e) => setStageFilter(e.target.value)}
+            className="text-xs px-2.5 py-1 rounded border bg-white/5 border-white/20 text-white/80 hover:bg-white/10 hover:border-white/30 transition-colors focus:outline-none focus:border-white/50"
           >
-            All
-          </button>
-          {allStages.map((stage) => (
-            <button
-              key={stage}
-              onClick={() => setStageFilter(stage)}
-              className={`text-xs px-2.5 py-1 rounded border transition-colors ${
-                stageFilter === stage
-                  ? 'bg-white/15 border-white/30 text-white'
-                  : 'bg-transparent border-white/10 text-white/30 hover:text-white/60'
-              }`}
-            >
-              {stage}
-            </button>
-          ))}
+            <option value="All">All stages</option>
+            {allStages.map((stage) => (
+              <option key={stage} value={stage}>
+                {stage}
+              </option>
+            ))}
+          </select>
         </div>
 
         <div className="flex flex-wrap gap-1.5 border-t border-white/10 pt-3">

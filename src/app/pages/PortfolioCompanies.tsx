@@ -1305,7 +1305,7 @@ export default function PortfolioCompanies() {
           >
             All
           </button>
-          {ALL_SOURCES.map((src) => (
+          {ALL_SOURCES.filter(src => src !== 'All').map((src) => (
             <button
               key={src}
               onClick={() => setSourceFilter(src)}

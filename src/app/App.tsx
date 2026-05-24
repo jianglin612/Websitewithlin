@@ -6,6 +6,8 @@ import Layout from './components/Layout';
 import Pillars from './pages/Pillars';
 import Thesis from './pages/Thesis';
 import WhatWeLookFor from './pages/WhatWeLookFor';
+import Network from './pages/Network';
+import PortfolioCompanies from './pages/PortfolioCompanies';
 
 const forestImages = [
   'https://images.unsplash.com/photo-1502058665739-cc9a8769fb1e?fit=crop&w=1080&q=80',
@@ -119,6 +121,8 @@ export default function App() {
           <Route path="/pillars" element={<Pillars />} />
           <Route path="/thesis" element={<Thesis />} />
           <Route path="/what-we-look-for" element={<WhatWeLookFor />} />
+          <Route path="/network" element={<Network />} />
+          <Route path="/portfolio-companies" element={<PortfolioCompanies />} />
         </Route>
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>

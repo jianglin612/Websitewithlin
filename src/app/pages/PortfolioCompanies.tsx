@@ -1231,56 +1231,58 @@ export default function PortfolioCompanies() {
 
       {/* Filter bar */}
       <div className="flex flex-col gap-3 mb-10">
-        <div className="flex flex-wrap gap-2">
-          <button
-            onClick={() => setFilter('all')}
-            className={`text-xs font-medium px-3 py-1.5 rounded border transition-colors ${
-              filter === 'all'
-                ? 'bg-white/15 border-white/30 text-white'
-                : 'bg-transparent border-white/15 text-white/40 hover:text-white/70'
-            }`}
-          >
-            All ({companies.length})
-          </button>
-          <button
-            onClick={() => setFilter('fit')}
-            className={`text-xs font-medium px-3 py-1.5 rounded border transition-colors ${
-              filter === 'fit'
-                ? 'bg-emerald-900/50 border-emerald-500/40 text-emerald-300'
-                : 'bg-transparent border-white/15 text-white/40 hover:text-white/70'
-            }`}
-          >
-            ✦ Linea Fit ({fitCount})
-          </button>
-          <button
-            onClick={() => setFilter('late')}
-            className={`text-xs font-medium px-3 py-1.5 rounded border transition-colors ${
-              filter === 'late'
-                ? 'bg-amber-900/40 border-amber-500/30 text-amber-300'
-                : 'bg-transparent border-white/15 text-white/40 hover:text-white/70'
-            }`}
-          >
-            ◦ Too Late ({lateCount})
-          </button>
-        </div>
+        <div className="flex flex-wrap items-center gap-2 justify-between">
+          <div className="flex flex-wrap gap-2">
+            <button
+              onClick={() => setFilter('all')}
+              className={`text-xs font-medium px-3 py-1.5 rounded border transition-colors ${
+                filter === 'all'
+                  ? 'bg-white/15 border-white/30 text-white'
+                  : 'bg-transparent border-white/15 text-white/40 hover:text-white/70'
+              }`}
+            >
+              All ({companies.length})
+            </button>
+            <button
+              onClick={() => setFilter('fit')}
+              className={`text-xs font-medium px-3 py-1.5 rounded border transition-colors ${
+                filter === 'fit'
+                  ? 'bg-emerald-900/50 border-emerald-500/40 text-emerald-300'
+                  : 'bg-transparent border-white/15 text-white/40 hover:text-white/70'
+              }`}
+            >
+              ✦ Linea Fit ({fitCount})
+            </button>
+            <button
+              onClick={() => setFilter('late')}
+              className={`text-xs font-medium px-3 py-1.5 rounded border transition-colors ${
+                filter === 'late'
+                  ? 'bg-amber-900/40 border-amber-500/30 text-amber-300'
+                  : 'bg-transparent border-white/15 text-white/40 hover:text-white/70'
+              }`}
+            >
+              ◦ Too Late ({lateCount})
+            </button>
+          </div>
 
-        <div className="flex items-center gap-2 border-t border-white/10 pt-3">
-          <label htmlFor="stage-select" className="text-xs text-white/40 font-medium">
-            Stage:
-          </label>
-          <select
-            id="stage-select"
-            value={stageFilter}
-            onChange={(e) => setStageFilter(e.target.value)}
-            className="text-xs px-2.5 py-1 rounded border bg-white/5 border-white/20 text-white/80 hover:bg-white/10 hover:border-white/30 transition-colors focus:outline-none focus:border-white/50"
-          >
-            <option value="All">All stages</option>
-            {allStages.map((stage) => (
-              <option key={stage} value={stage}>
-                {stage}
-              </option>
-            ))}
-          </select>
+          <div className="flex items-center gap-2">
+            <label htmlFor="stage-select" className="text-xs text-white/40 font-medium">
+              Stage:
+            </label>
+            <select
+              id="stage-select"
+              value={stageFilter}
+              onChange={(e) => setStageFilter(e.target.value)}
+              className="text-xs px-2.5 py-1 rounded border bg-white/5 border-white/20 text-white/80 hover:bg-white/10 hover:border-white/30 transition-colors focus:outline-none focus:border-white/50"
+            >
+              <option value="All">All stages</option>
+              {allStages.map((stage) => (
+                <option key={stage} value={stage}>
+                  {stage}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
 
         <div className="flex flex-wrap gap-1.5 border-t border-white/10 pt-3">

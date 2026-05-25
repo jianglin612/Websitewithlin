@@ -1111,8 +1111,6 @@ const projects: Project[] = [
     categoryWeight: 5,
     notes: 'Highest stars in ML. Google enterprise.',
   },
-
-  },
 ];
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────

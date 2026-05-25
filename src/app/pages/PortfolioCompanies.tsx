@@ -1163,7 +1163,7 @@ function CompanyCard({ company }: { company: Company }) {
 
 const ALL_SOURCES = ['All', ...Array.from(new Set(companies.map((c) => c.source)))];
 
-export default function PortfolioCompanies() {
+function PortfolioCompaniesContent() {
   const location = useLocation();
   const [filter, setFilter] = useState<'all' | 'fit' | 'late'>('all');
   const [sourceFilter, setSourceFilter] = useState('All');
@@ -1318,6 +1318,50 @@ export default function PortfolioCompanies() {
       {visible.length === 0 && (
         <p className="text-white/30 text-sm text-center py-16">No companies match this filter.</p>
       )}
+    </div>
+  );
+}
+
+export default function PortfolioCompanies() {
+  const [input, setInput] = useState('');
+  const [unlocked, setUnlocked] = useState(false);
+  const [error, setError] = useState(false);
+
+  if (unlocked) return <PortfolioCompaniesContent />;
+
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (input === 'lincap') {
+      setUnlocked(true);
+      setError(false);
+    } else {
+      setError(true);
+      setInput('');
+    }
+  }
+
+  return (
+    <div className="flex flex-col items-center justify-center flex-1 px-6 py-20">
+      <p className="text-xs font-bold tracking-widest uppercase text-white/40 mb-8">
+        Linea Ventures · Portfolio
+      </p>
+      <form onSubmit={handleSubmit} className="flex flex-col items-center gap-4 w-full max-w-xs">
+        <input
+          type="password"
+          value={input}
+          onChange={(e) => { setInput(e.target.value); setError(false); }}
+          placeholder="Enter password"
+          autoFocus
+          className="w-full bg-white/5 border border-white/20 rounded-lg px-4 py-3 text-white/90 text-sm placeholder:text-white/25 focus:outline-none focus:border-white/50 transition-colors"
+        />
+        {error && <p className="text-red-400 text-xs">Incorrect password</p>}
+        <button
+          type="submit"
+          className="w-full bg-white/10 border border-white/20 hover:bg-white/15 text-white text-sm font-medium py-2 rounded-lg transition-colors"
+        >
+          Unlock
+        </button>
+      </form>
     </div>
   );
 }

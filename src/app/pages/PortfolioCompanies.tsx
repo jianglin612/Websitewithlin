@@ -990,9 +990,6 @@ const companies: Company[] = [
   { name: 'Sage Care', website: 'https://www.sage.care', description: 'AI-powered care navigation system providing intelligent triage and specialist matching for healthcare.', stage: 'Seed', investors: [], source: 'Seven Stars' },
   { name: 'Voya Energy', website: 'https://www.voya.energy', description: 'Metal fuel technology company converting recycled metals into clean, distributed energy without grid dependence.', stage: 'Seed', investors: [], source: 'Seven Stars' },
 
-  // Sonar Capital
-  { name: 'Healtharc', website: 'https://www.healtharc.io', description: 'Virtual healthcare platform providing remote patient monitoring and chronic care management solutions.', stage: 'Series A', investors: [], source: 'Sonar Capital' },
-
   // Sugar Free Capital
   { name: 'Avibra', website: 'https://www.avibra.com', description: 'Benefits, perks and rewards platform for hourly and part-time workers providing financial, insurance, and wellness benefits.', stage: 'Series B', investors: [], source: 'Sugar Free Capital' },
   { name: 'CreativeMode', website: 'https://creativemode.co', description: 'No-code platform for creating Minecraft mods using AI.', stage: 'Seed', investors: [], source: 'Sugar Free Capital' },
@@ -1037,22 +1034,12 @@ const companies: Company[] = [
   { name: 'Wingspan', website: 'https://wingspan.app', description: 'Payroll and HR platform for freelancers and contractors.', stage: 'Series B', investors: [], source: 'Swift Ventures' },
 
   // The Aligned Fund
-  { name: 'Calendly', website: 'https://calendly.com', description: '', stage: 'Late Stage', investors: [], source: 'The Aligned Fund' },
   { name: 'Joyful Health', website: 'https://www.joyfulhealth.com', description: 'AI-powered healthcare revenue recovery platform helping providers recover unpaid insurance claims.', stage: 'Series A', investors: [], source: 'The Aligned Fund' },
 
   // Umami Capital
-  { name: 'Brex', website: 'https://brex.com', description: '', stage: 'Late Stage', investors: [], source: 'Umami Capital' },
-  { name: 'Databricks', website: 'https://databricks.com', description: '', stage: 'Late Stage', investors: [], source: 'Umami Capital' },
   { name: 'Deel', website: 'https://deel.com', description: '', stage: 'Late Stage', investors: [], source: 'Umami Capital' },
   { name: 'Discord', website: 'https://discord.com', description: '', stage: 'Late Stage', investors: [], source: 'Umami Capital' },
-  { name: 'Groq', website: 'https://groq.com', description: '', stage: 'Growth Stage', investors: [], source: 'Umami Capital' },
   { name: 'SpaceX', website: 'https://spacex.com', description: '', stage: 'Late Stage', investors: [], source: 'Umami Capital' },
-  { name: 'Stripe', website: 'https://stripe.com', description: '', stage: 'Late Stage', investors: [], source: 'Umami Capital' },
-
-  // Zeno Ventures
-  { name: 'BioRender', website: 'https://www.biorender.com', description: 'Scientific figure and illustration software for creating publication-ready graphics and presentations.', stage: 'Series A', investors: [], source: 'Zeno Ventures' },
-  { name: 'Heart Aerospace', website: 'https://heartaerospace.com', description: 'Hybrid-electric regional aircraft manufacturer developing sustainable air travel solutions.', stage: 'Series B', investors: [], source: 'Zeno Ventures' },
-  { name: 'Standard Bots', website: 'https://standardbots.com', description: 'AI-powered collaborative robot manufacturer making accessible industrial automation.', stage: 'Series B', investors: [], source: 'Zeno Ventures' },
 
   // AGI House
 ];
@@ -1186,7 +1173,7 @@ export default function PortfolioCompanies() {
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const src = params.get('source');
-    if (src && ALL_SOURCES.includes(src)) {
+    if (src && companies.map(c => c.source).includes(src)) {
       setSourceFilter(src);
     }
   }, [location.search]);
@@ -1324,7 +1311,7 @@ export default function PortfolioCompanies() {
       {/* Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {visible.map((company) => (
-          <CompanyCard key={company.name} company={company} />
+          <CompanyCard key={`${company.name}-${company.source}`} company={company} />
         ))}
       </div>
 

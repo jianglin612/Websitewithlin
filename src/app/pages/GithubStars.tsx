@@ -11313,7 +11313,7 @@ export default function GithubStars() {
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (input === 'lincap') {
+    if (input === 'lincap-stars') {
       setUnlocked(true);
       setError(false);
     } else {

@@ -455,6 +455,7 @@ const projects: Project[] = [
     hasCompany: false,
     categoryWeight: 2,
     notes: 'Ethereum Foundation project. Python SDK for blockchain interaction.',
+  },
 
   // ── Additional AI Infrastructure ───────────────────────────────────────────
   {

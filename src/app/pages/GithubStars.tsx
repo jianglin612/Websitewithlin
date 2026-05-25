@@ -11161,6 +11161,7 @@ function GithubStarsContent() {
   const [categoryFilter, setCategoryFilter] = useState<Category | 'All'>('All');
   const [hasCompanyFilter, setHasCompanyFilter] = useState(false);
   const [stageFilter, setStageFilter] = useState('All');
+  const [sortBy, setSortBy] = useState<'signal' | 'stars' | 'growth'>('signal');
 
   const visible = projects
     .filter((p) => {
@@ -11176,7 +11177,15 @@ function GithubStarsContent() {
       }
       return true;
     })
-    .sort((a, b) => signalScore(b) - signalScore(a));
+    .sort((a, b) => {
+      if (sortBy === 'signal') {
+        return signalScore(b) - signalScore(a);
+      } else if (sortBy === 'stars') {
+        return b.stars - a.stars;
+      } else {
+        return b.starsLastMonth - a.starsLastMonth;
+      }
+    });
 
   const highSignalCount = projects.filter((p) => signalScore(p) >= 6).length;
 
@@ -11246,6 +11255,21 @@ function GithubStarsContent() {
                 {STAGES.map((s) => (
                   <option key={s} value={s}>{s}</option>
                 ))}
+              </select>
+            </div>
+
+            {/* Sort dropdown */}
+            <div className="flex items-center gap-2">
+              <label htmlFor="sort-select" className="text-xs text-white/40 font-medium">Sort:</label>
+              <select
+                id="sort-select"
+                value={sortBy}
+                onChange={(e) => setSortBy(e.target.value as 'signal' | 'stars' | 'growth')}
+                className="text-xs px-2.5 py-1 rounded border bg-white/5 border-white/20 text-white/80 hover:bg-white/10 hover:border-white/30 transition-colors focus:outline-none focus:border-white/50"
+              >
+                <option value="signal">Signal Score</option>
+                <option value="stars">Stars (High to Low)</option>
+                <option value="growth">Monthly Growth</option>
               </select>
             </div>
           </div>

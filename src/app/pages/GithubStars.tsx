@@ -11178,12 +11178,14 @@ function GithubStarsContent() {
       return true;
     })
     .sort((a, b) => {
-      if (sortBy === 'signal') {
-        return signalScore(b) - signalScore(a);
-      } else if (sortBy === 'stars') {
-        return b.stars - a.stars;
-      } else {
-        return b.starsLastMonth - a.starsLastMonth;
+      switch (sortBy) {
+        case 'stars':
+          return b.stars - a.stars;
+        case 'growth':
+          return b.starsLastMonth - a.starsLastMonth;
+        case 'signal':
+        default:
+          return signalScore(b) - signalScore(a);
       }
     });
 

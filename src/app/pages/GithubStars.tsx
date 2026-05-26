@@ -11203,82 +11203,81 @@ function GithubStarsContent() {
 
       {/* Filter bar */}
       <div className="flex flex-col gap-3 mb-10">
-        {/* Row 1: category + filters */}
-        <div className="flex flex-wrap items-center gap-2 justify-between">
-          <div className="flex flex-wrap gap-2">
+        {/* Row 1: category buttons */}
+        <div className="flex flex-wrap gap-2">
+          <button
+            onClick={() => setCategoryFilter('All')}
+            className={`text-xs font-medium px-3 py-1.5 rounded border transition-colors ${
+              categoryFilter === 'All'
+                ? 'bg-white/15 border-white/30 text-white'
+                : 'bg-transparent border-white/15 text-white/40 hover:text-white/70'
+            }`}
+          >
+            All ({projects.length})
+          </button>
+          {CATEGORIES.map((cat) => (
             <button
-              onClick={() => setCategoryFilter('All')}
+              key={cat}
+              onClick={() => setCategoryFilter(cat)}
               className={`text-xs font-medium px-3 py-1.5 rounded border transition-colors ${
-                categoryFilter === 'All'
+                categoryFilter === cat
                   ? 'bg-white/15 border-white/30 text-white'
                   : 'bg-transparent border-white/15 text-white/40 hover:text-white/70'
               }`}
             >
-              All ({projects.length})
+              {cat}
             </button>
-            {CATEGORIES.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setCategoryFilter(cat)}
-                className={`text-xs font-medium px-3 py-1.5 rounded border transition-colors ${
-                  categoryFilter === cat
-                    ? 'bg-white/15 border-white/30 text-white'
-                    : 'bg-transparent border-white/15 text-white/40 hover:text-white/70'
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
+          ))}
+        </div>
+
+        {/* Row 2: filters and sort */}
+        <div className="flex flex-wrap items-center gap-3">
+          {/* Has Company toggle */}
+          <button
+            onClick={() => setHasCompanyFilter(!hasCompanyFilter)}
+            className={`flex items-center gap-2 text-xs px-3 py-1.5 rounded border transition-colors ${
+              hasCompanyFilter
+                ? 'bg-white/15 border-white/30 text-white'
+                : 'bg-transparent border-white/15 text-white/40 hover:text-white/70'
+            }`}
+          >
+            <span className={`w-1.5 h-1.5 rounded-full ${hasCompanyFilter ? 'bg-emerald-400' : 'bg-white/20'}`} />
+            Has Company
+          </button>
+
+          {/* Stage dropdown */}
+          <div className="flex items-center gap-2">
+            <label htmlFor="stage-select" className="text-xs text-white/40 font-medium">Stage:</label>
+            <select
+              id="stage-select"
+              value={stageFilter}
+              onChange={(e) => setStageFilter(e.target.value)}
+              className="text-xs px-2.5 py-1 rounded border bg-white/5 border-white/20 text-white/80 hover:bg-white/10 hover:border-white/30 transition-colors focus:outline-none focus:border-white/50"
+            >
+              {STAGES.map((s) => (
+                <option key={s} value={s}>{s}</option>
+              ))}
+            </select>
           </div>
 
-          <div className="flex items-center gap-3">
-            {/* Has Company toggle */}
-            <button
-              onClick={() => setHasCompanyFilter(!hasCompanyFilter)}
-              className={`flex items-center gap-2 text-xs px-3 py-1.5 rounded border transition-colors ${
-                hasCompanyFilter
-                  ? 'bg-white/15 border-white/30 text-white'
-                  : 'bg-transparent border-white/15 text-white/40 hover:text-white/70'
-              }`}
+          {/* Sort dropdown */}
+          <div className="flex items-center gap-2">
+            <label htmlFor="sort-select" className="text-xs text-white/40 font-medium">Sort:</label>
+            <select
+              id="sort-select"
+              value={sortBy}
+              onChange={(e) => {
+                const val = e.target.value;
+                if (val === 'signal' || val === 'stars' || val === 'growth') {
+                  setSortBy(val);
+                }
+              }}
+              className="text-xs px-2.5 py-1 rounded border bg-white/5 border-white/20 text-white/80 hover:bg-white/10 hover:border-white/30 transition-colors focus:outline-none focus:border-white/50"
             >
-              <span className={`w-1.5 h-1.5 rounded-full ${hasCompanyFilter ? 'bg-emerald-400' : 'bg-white/20'}`} />
-              Has Company
-            </button>
-
-            {/* Stage dropdown */}
-            <div className="flex items-center gap-2">
-              <label htmlFor="stage-select" className="text-xs text-white/40 font-medium">Stage:</label>
-              <select
-                id="stage-select"
-                value={stageFilter}
-                onChange={(e) => setStageFilter(e.target.value)}
-                className="text-xs px-2.5 py-1 rounded border bg-white/5 border-white/20 text-white/80 hover:bg-white/10 hover:border-white/30 transition-colors focus:outline-none focus:border-white/50"
-              >
-                {STAGES.map((s) => (
-                  <option key={s} value={s}>{s}</option>
-                ))}
-              </select>
-            </div>
-
-            {/* Sort dropdown */}
-            <div className="flex items-center gap-2">
-              <label htmlFor="sort-select" className="text-xs text-white/40 font-medium">Sort:</label>
-              <select
-                id="sort-select"
-                value={sortBy}
-                onChange={(e) => {
-                  const val = e.target.value;
-                  if (val === 'signal' || val === 'stars' || val === 'growth') {
-                    setSortBy(val);
-                  }
-                }}
-                className="text-xs px-2.5 py-1 rounded border bg-white/5 border-white/20 text-white/80 hover:bg-white/10 hover:border-white/30 transition-colors focus:outline-none focus:border-white/50"
-              >
-                <option value="signal">Signal Score</option>
-                <option value="stars">Stars (High to Low)</option>
-                <option value="growth">Monthly Growth</option>
-              </select>
-            </div>
+              <option value="signal">Signal Score</option>
+              <option value="stars">Stars (High to Low)</option>
+              <option value="growth">Monthly Growth</option>
+            </select>
           </div>
         </div>
 

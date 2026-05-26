@@ -11163,31 +11163,31 @@ function GithubStarsContent() {
   const [stageFilter, setStageFilter] = useState('All');
   const [sortBy, setSortBy] = useState<'signal' | 'stars' | 'growth'>('signal');
 
-  const visible = projects
-    .filter((p) => {
-      if (categoryFilter !== 'All' && p.category !== categoryFilter) return false;
-      if (hasCompanyFilter && !p.hasCompany) return false;
-      if (stageFilter !== 'All') {
-        if (stageFilter === 'Series B+') {
-          const stage = p.companyStage ?? '';
-          if (!['Series B', 'Series C', 'Series D', 'Series E', 'Series F', 'Late Stage', 'Public'].includes(stage)) return false;
-        } else {
-          if (p.companyStage !== stageFilter) return false;
-        }
+  const filtered = projects.filter((p) => {
+    if (categoryFilter !== 'All' && p.category !== categoryFilter) return false;
+    if (hasCompanyFilter && !p.hasCompany) return false;
+    if (stageFilter !== 'All') {
+      if (stageFilter === 'Series B+') {
+        const stage = p.companyStage ?? '';
+        if (!['Series B', 'Series C', 'Series D', 'Series E', 'Series F', 'Late Stage', 'Public'].includes(stage)) return false;
+      } else {
+        if (p.companyStage !== stageFilter) return false;
       }
-      return true;
-    })
-    .sort((a, b) => {
-      switch (sortBy) {
-        case 'stars':
-          return b.stars - a.stars;
-        case 'growth':
-          return b.starsLastMonth - a.starsLastMonth;
-        case 'signal':
-        default:
-          return signalScore(b) - signalScore(a);
-      }
-    });
+    }
+    return true;
+  });
+
+  const visible = [...filtered].sort((a, b) => {
+    switch (sortBy) {
+      case 'stars':
+        return b.stars - a.stars;
+      case 'growth':
+        return b.starsLastMonth - a.starsLastMonth;
+      case 'signal':
+      default:
+        return signalScore(b) - signalScore(a);
+    }
+  });
 
   const highSignalCount = projects.filter((p) => signalScore(p) >= 6).length;
 

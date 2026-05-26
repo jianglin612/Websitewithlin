@@ -11163,7 +11163,15 @@ function GithubStarsContent() {
   const [stageFilter, setStageFilter] = useState('All');
   const [sortBy, setSortBy] = useState<'signal' | 'stars' | 'growth'>('signal');
 
-  const filtered = projects.filter((p) => {
+  // Deduplicate projects by repo
+  const seen = new Set<string>();
+  const uniqueProjects = projects.filter((p) => {
+    if (seen.has(p.repo)) return false;
+    seen.add(p.repo);
+    return true;
+  });
+
+  const filtered = uniqueProjects.filter((p) => {
     if (categoryFilter !== 'All' && p.category !== categoryFilter) return false;
     if (hasCompanyFilter && !p.hasCompany) return false;
     if (stageFilter !== 'All') {
@@ -11189,7 +11197,7 @@ function GithubStarsContent() {
     }
   });
 
-  const highSignalCount = projects.filter((p) => signalScore(p) >= 6).length;
+  const highSignalCount = uniqueProjects.filter((p) => signalScore(p) >= 6).length;
 
   return (
     <div className="max-w-5xl mx-auto px-6 sm:px-8 py-12 sm:py-20">
@@ -11213,7 +11221,7 @@ function GithubStarsContent() {
                 : 'bg-transparent border-white/15 text-white/40 hover:text-white/70'
             }`}
           >
-            All ({projects.length})
+            All ({uniqueProjects.length})
           </button>
           {CATEGORIES.map((cat) => (
             <button

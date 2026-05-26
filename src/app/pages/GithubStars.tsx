@@ -11266,7 +11266,12 @@ function GithubStarsContent() {
               <select
                 id="sort-select"
                 value={sortBy}
-                onChange={(e) => setSortBy(e.target.value as 'signal' | 'stars' | 'growth')}
+                onChange={(e) => {
+                  const val = e.target.value;
+                  if (val === 'signal' || val === 'stars' || val === 'growth') {
+                    setSortBy(val);
+                  }
+                }}
                 className="text-xs px-2.5 py-1 rounded border bg-white/5 border-white/20 text-white/80 hover:bg-white/10 hover:border-white/30 transition-colors focus:outline-none focus:border-white/50"
               >
                 <option value="signal">Signal Score</option>

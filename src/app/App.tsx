@@ -9,6 +9,7 @@ import WhatWeLookFor from './pages/WhatWeLookFor';
 import Network from './pages/Network';
 import PortfolioCompanies from './pages/PortfolioCompanies';
 import GithubStars from './pages/GithubStars';
+import LineaDeck from './pages/LineaDeck';
 import Methodology from './pages/Methodology';
 
 const forestImages = [
@@ -127,6 +128,7 @@ export default function App() {
           <Route path="/portfolio-companies" element={<PortfolioCompanies />} />
           <Route path="/methodology" element={<Methodology />} />
           <Route path="/github-stars" element={<GithubStars />} />
+          <Route path="/fund" element={<LineaDeck />} />
         </Route>
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>

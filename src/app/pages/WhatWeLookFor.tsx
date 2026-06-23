@@ -66,10 +66,9 @@ export default function WhatWeLookFor() {
         <Li><strong className="text-white/90">A tier-1 lead is likely.</strong> We don't fetishize logos, but as a solo GP, knowing the next round is more or less de-risked matters. Picky VCs are good signaling, full stop.</Li>
         <Li><strong className="text-white/90">3–9 months from the next round.</strong> Our sweet spot. Enough runway that we can spend real time with the founder before the round opens. Not so close that we're just filling allocation in a hot deal.</Li>
         <Li><strong className="text-white/90">Founder is putting their own money in.</strong> We've never regretted backing a founder who was a meaningful personal LP in their own company. We've occasionally regretted backing one who wasn't. Skin in the game is real.</Li>
+        <Li><strong className="text-white/90">Highly capital efficient.</strong> We like startups where revenue per employee is at least $250K and they've burned less money than they've earned. Efficiency is a signal of a founder who thinks deeply about unit economics and sustainable growth.</Li>
         <Li><strong className="text-white/90">They move fast.</strong> The best founders we back ship something every week, talk to customers every day, and rewrite the roadmap whenever new data comes in. Velocity is a discipline, not a personality trait — and founders who have it consistently beat smarter founders who don't.</Li>
       </ul>
-
-      <Blockquote>Two out of three of these isn't enough. We need all three before we write the check — and we'd rather pass than convince ourselves into something.</Blockquote>
     </div>
   );
 }

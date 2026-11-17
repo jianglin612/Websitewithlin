@@ -21,7 +21,7 @@ nav a:hover,.study-link:hover,.footer>a:last-child:hover{text-decoration:underli
 .hero{display:grid;grid-template-columns:1fr 1.13fr;align-items:center;gap:clamp(28px,5vw,80px);padding-block:clamp(50px,8vw,118px)}
 h1,h2,h3{font-family:"Instrument Serif",Georgia,serif;font-weight:400;margin:0}
 h1{font-size:clamp(48px,5.6vw,87px);line-height:1;letter-spacing:-.055em}
-h1 em{color:var(--accent)}
+h1 em,h1 .headline-accent{color:var(--accent)}
 p{color:var(--muted)}
 .hero p{font-size:18px;max-width:475px;margin:22px 0 29px}
 .action{display:inline-flex;align-items:center;gap:18px;padding:11px 17px;background:#c2d8ff;color:#0b1526;border-radius:3px;text-decoration:none;font-size:14px}

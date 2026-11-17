@@ -6,7 +6,7 @@
       // Save the path as a query param on / so index.html can restore it
       var path = location.pathname;
       if (path && path !== '/') {
-        location.replace('/?r=' + encodeURIComponent(path));
+        location.replace('/app.html?r=' + encodeURIComponent(path));
       }
     </script>
   </head>

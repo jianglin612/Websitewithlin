@@ -115,11 +115,19 @@ function Home() {
   );
 }
 
+// The home page is now a static page served at /; leave the app for it.
+function StaticHome() {
+  useEffect(() => {
+    window.location.replace('/');
+  }, []);
+  return null;
+}
+
 export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<StaticHome />} />
         <Route element={<Layout />}>
           <Route path="/pillars" element={<Pillars />} />
           <Route path="/thesis" element={<Thesis />} />

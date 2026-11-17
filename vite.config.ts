@@ -5,6 +5,13 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   base: '/',
+  // The home page and Study are static files in public/; the React app
+  // (thesis, pillars, fund, etc.) is served from app.html via 404.html.
+  build: {
+    rollupOptions: {
+      input: path.resolve(__dirname, 'app.html'),
+    },
+  },
   plugins: [
     // The React and Tailwind plugins are both required for Make, even if
     // Tailwind is not being actively used – do not remove them

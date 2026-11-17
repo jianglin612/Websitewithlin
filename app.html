@@ -31,6 +31,9 @@
         var r = params.get('r');
         if (r) {
           history.replaceState(null, '', r);
+        } else if (location.pathname === '/app.html') {
+          // The home page is the static site at /
+          location.replace('/');
         }
       </script>
       <script type="module" src="/src/main.tsx"></script>
